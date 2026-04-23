@@ -1,0 +1,26 @@
+{
+  "name": "m5",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "start": "node --import tsx src/server/index.ts",
+    "demo:list": "node --import tsx src/demos/listTools.ts",
+    "demo:compare": "node --import tsx src/demos/compareToolContracts.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valen-ruggieri/M5L2_MCP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/valen-ruggieri/M5L2_MCP/issues"
+  },
+  "homepage": "https://github.com/valen-ruggieri/M5L2_MCP#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "tsx": "^4.21.0"
+  }
+}
