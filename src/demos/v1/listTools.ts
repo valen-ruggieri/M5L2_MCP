@@ -1,6 +1,6 @@
 import { badTool } from "../../tools/bad-tool.js";
 import { goodTool } from "../../tools/good-tool.js";
-import { createTaskValidatedTool } from "../../tools/create-task-validated.tool.js";
+import { createTaskValidatedTool } from "../../tools/create-task.tool.js";
 
 console.log("\n=============================================");
 console.log("   CATÁLOGO DE TOOLS (Lo que ve el LLM)    ");

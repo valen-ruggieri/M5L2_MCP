@@ -1,62 +1,47 @@
 import { CreateTaskSchema } from "../../schemas/create-task.schema.js";
 
 const validInput = {
-  title: "Revisar README",
-  priority: "high",
-};
-
-const invalidInput1 = {
-  title: "Revisar README",
-  priority: "urgent", // Valor no permitido en el enum
-};
-
-const invalidInput2 = {
-  priority: "high", // Falta el campo title
-};
-
-const invalidInput3 = {
-  title: 123, // Tipo incorrecto (debería ser string)
-  priority: "high",
-};
-
-console.log("\n==========================================");
-console.log("   DEMO Zod: Validación en Runtime");
-console.log("==========================================");
-
-console.log("\n>>> Caso 1: Input Válido");
-const validResult = CreateTaskSchema.safeParse(validInput);
-if (validResult.success) {
-  console.log("✓ Éxito:", JSON.stringify(validResult.data, null, 2));
+    title: "Revisar README",
+    priority: "high"
 }
 
-console.log("\n>>> Caso 2: Prioridad Inválida ('urgent')");
-const invalidResult1 = CreateTaskSchema.safeParse(invalidInput1);
-if (!invalidResult1.success) {
-  console.log("✗ Error de Validación:");
-  console.log(JSON.stringify(invalidResult1.error.issues.map(i => ({ path: i.path, message: i.message })), null, 2));
+const invalidInput = {
+    title: 48,
+    priority: "urgent",
+    dueDate: "hoy"
 }
 
-console.log("\n>>> Caso 3: Falta campo obligatorio (title)");
-const invalidResult2 = CreateTaskSchema.safeParse(invalidInput2);
-if (!invalidResult2.success) {
-  console.log("✗ Error de Validación:");
-  console.log(JSON.stringify(invalidResult2.error.issues.map(i => ({ path: i.path, message: i.message })), null, 2));
-}
+console.log('safeValid test con input valido');
 
-console.log("\n>>> Caso 4: Tipo incorrecto (number en vez de string)");
-const invalidResult3 = CreateTaskSchema.safeParse(invalidInput3);
-if (!invalidResult3.success) {
-  console.log("✗ Error de Validación:");
-  console.log(JSON.stringify(invalidResult3.error.issues.map(i => ({ path: i.path, message: i.message })), null, 2));
-}
+const safeValid = CreateTaskSchema.safeParse(validInput);
 
-console.log("\n>>> Comparación: safeParse() vs parse()");
-console.log("- safeParse() devuelve un objeto con success: true/false.");
-console.log("- parse() lanza una excepción si falla.");
+console.log(safeValid);
+
+
+console.log('safeInvalid test con input invalido');
+
+const safeInvalid = CreateTaskSchema.safeParse(invalidInput);
+
+console.log(safeInvalid);
+
+
+console.log('parsedValid test con input valido');
 
 try {
-  console.log("\nEjecutando parse() con input inválido...");
-  CreateTaskSchema.parse(invalidInput1);
+    const parsedValid = CreateTaskSchema.parse(validInput);
+    console.log(parsedValid);
+
 } catch (error) {
-  console.log("¡Boom! parse() lanzó una excepción como se esperaba.");
+    console.error(error)
+}
+
+console.log('parsedInvalid test con input invalido');
+
+try {
+    const parsedInvalid = CreateTaskSchema.parse(invalidInput);
+    console.log(parsedInvalid);
+
+
+} catch (error) {
+    console.error(error)
 }

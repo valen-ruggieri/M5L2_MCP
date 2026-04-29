@@ -7,7 +7,8 @@
     "start": "node --import tsx src/server/index.ts",
     "demo:list": "node --import tsx src/demos/v1/listTools.ts",
     "demo:compare": "node --import tsx src/demos/v1/compareToolContracts.ts",
-    "demo:v2": "node --import tsx src/demos/v2/test-zod.ts"
+    "demo:v2": "node --import tsx src/demos/v2/test-zod.ts",
+    "playground": "node --import tsx src/demos/v2/playground.ts"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,9 @@
     "@modelcontextprotocol/sdk": "^1.29.0",
     "tsx": "^4.21.0",
     "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^6.0.3"
   }
 }
